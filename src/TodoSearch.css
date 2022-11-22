@@ -1,0 +1,21 @@
+.TodoSearch-input{
+    width: 100%;
+    max-width: 800px;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    padding-left: 10px;
+    margin-top: 5rem;
+    border-radius: 10px;
+    border: 0px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+.TodoSearch-input::placeholder {
+    color: #a5a5a5;
+    font-weight: 400;
+}
