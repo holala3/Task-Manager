@@ -36,6 +36,7 @@ function App(){
     })
 
   }
+  setTodos()
 
   return (
     <React.Fragment>
