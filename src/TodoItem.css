@@ -22,7 +22,7 @@
 .Icon-check{
     position: absolute;
     left: 12px;  
-    font-size: 18px;
+    font-size: 25px;
     cursor: pointer;
 }
 .Icon-delete:hover{
@@ -34,7 +34,7 @@
 .Icon-delete{
     position: absolute;
     right: 0;
-    font-size: 18px;
+    font-size: 25px;
     cursor: pointer;
     margin-right: 20px;
 }
