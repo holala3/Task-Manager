@@ -10,7 +10,7 @@ import { TodoTittle } from "./TodoTittle"
 
 
 const defaultTodos = [
-  { text: 'Tomar curso de Angular sql', completed: true },
+  { text: 'Dormir con lolita', completed: true },
   { text: 'Tomar el curso de React', completed: false },
   { text: 'Dormir', completed: true },
   { text: 'Tomar agua', completed: false },
