@@ -41,3 +41,8 @@
 .TodoItem-p--complete {
     text-decoration: line-through;
   }
+  .holi  {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+  }

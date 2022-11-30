@@ -16,18 +16,61 @@ import { TodoTittle } from "./TodoTittle"
 //    { text: 'Tomar agua', completed: false },
 // ];
 
+
+
+function useLocalStorage(itemName, initialValue) {
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(false);
+  
+  const [item, setItem] = React.useState(initialValue);
+  React.useEffect(() => {
+    setTimeout(() => {
+      try{
+        const localStorageItem = localStorage.getItem(itemName);
+      let parsedItem;
+      
+      if (!localStorageItem) {
+        localStorage.setItem(itemName, JSON.stringify(initialValue));
+        parsedItem = initialValue;
+      } else {
+        parsedItem = JSON.parse(localStorageItem);
+      }
+
+      setItem(parsedItem);
+      setLoading(false)
+      } catch(eror){
+        setError(error)
+      }
+      
+    }, 1000);
+  });
+  
+
+
+  const saveItem = (newItem) => {
+    try{
+      const stringifiedItem = JSON.stringify(newItem);
+    localStorage.setItem(itemName, stringifiedItem);
+    setItem(newItem);
+    } catch(error){
+      setError(error)
+    }
+  };
+  return {
+    item,
+    saveItem,
+    loading,
+    error,
+  };
+}
 function App() {
-  const localStorageTodos = localStorage.getItem("TODOS_V1", );
-  let parsedTodos;
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error
+  } = useLocalStorage("TODOS_V1", [])
 
-  if (!localStorageTodos){
-    localStorage.setItem("TODOS_V1", JSON.stringify([]))
-    parsedTodos = []
-  } else {
-    parsedTodos = JSON.parse(localStorageTodos)
-  }
-
-  const [todos, setTodos] = React.useState(parsedTodos);
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(todo => !!todo.completed).length;
@@ -46,13 +89,6 @@ function App() {
   }
 
 
-  const saveTodos = (newTodos) => {
-    const stringifiedTodos = JSON.stringify(newTodos)
-    localStorage.setItem("TODOS_V1", stringifiedTodos)
-    setTodos(newTodos);
-  };
-
-
   const completeTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos];
@@ -67,7 +103,13 @@ function App() {
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
-  
+    
+
+    // React.useEffect(() => {
+    //   console.log("Use Effect")
+    // }, [totalTodos]);
+
+
   return (
     <React.Fragment>
       <TodoTittle/>
@@ -91,6 +133,11 @@ function App() {
           />
         ))}
       </TodoList>
+          {error && <p>Desesperate, hubo un error...</p>}
+          {loading && <p className='holi'>Estamos cargando</p>}
+          {(!loading && !searchedTodos.length) && <p className='holi'>Crea tu primer todo!</p>}
+
+
 
       <CreateTodoButton />
     </React.Fragment>
