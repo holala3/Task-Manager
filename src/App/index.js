@@ -105,10 +105,6 @@ function App() {
   };
     
 
-    // React.useEffect(() => {
-    //   console.log("Use Effect")
-    // }, [totalTodos]);
-
 
   return (
     <React.Fragment>
