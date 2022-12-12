@@ -1,49 +1,56 @@
 import React from 'react';
-// Importamos nuestro contexto
-import { TodoContext } from "../TodoContext"
+// También es importante importar nuestro contexto
+import { TodoContext } from '../TodoContext';
 import { TodoCounter } from '../TodoCounter';
-import { TodoItem } from "../TodoItem"
-import { TodoSearch } from "../TodoSearch"
-import {  TodoList } from "../TodoList"
-import { CreateTodoButton } from "../CreateTodoButton" 
+import { TodoSearch } from '../TodoSearch';
+import { TodoList } from '../TodoList';
+import { TodoItem } from '../TodoItem';
+import { CreateTodoButton } from '../CreateTodoButton';
 import { TodoTittle } from "../TodoTittle"
-
-
+import { Modal } from '../Modal';
 function AppUI() {
+  // Desesctructuramos los valores de nuestro contexto
+  const {
+    error,
+    loading,
+    searchedTodos,
+    completeTodo,
+    deleteTodo,
+    openModal,
+    setOpenModal,
+  } = React.useContext(TodoContext);
+  
   return (
     <React.Fragment>
-        <TodoTittle></TodoTittle>
+      <TodoTittle></TodoTittle>
       <TodoSearch />
       <TodoCounter />
 
-      {/* Podemos acceder a nuestro contexto con el consumer */}
-      <TodoContext.Consumer>
-        {({
-          error,
-          loading,
-          searchedTodos,
-          completeTodo,
-          deleteTodo,
-        }) => (
-          <TodoList>
-            {error && <p>Desespérate, hubo un error...</p>}
-            {loading && <p>Estamos cargando, no desesperes...</p>}
-            {(!loading && !searchedTodos.length) && <p>¡Crea tu primer TODO!</p>}
-            
-            {searchedTodos.map(todo => (
-              <TodoItem
-                key={todo.text}
-                text={todo.text}
-                completed={todo.completed}
-                onComplete={() => completeTodo(todo.text)}
-                onDelete={() => deleteTodo(todo.text)}
-              />
-            ))}
-          </TodoList>
-        )}
-      </TodoContext.Consumer>
+      <TodoList>
+        {error && <p className='center-text'>Desespérate, hubo un error...</p>}
+        {loading && <p className='center-text'>Estamos cargando, no te desesperes...</p>}
+        {(!loading && !searchedTodos.length) && <p className='center-text'>¡Crea tu primer TODO!</p>}
+        
+        {searchedTodos.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />
+        ))}
+      </TodoList>
 
-      <CreateTodoButton />
+          {!!openModal && (
+            <Modal>
+            <p>{searchedTodos[0]?.text}</p>
+          </Modal>
+          )}
+
+      <CreateTodoButton 
+      setOpenModal={setOpenModal}
+      />
     </React.Fragment>
   );
 }

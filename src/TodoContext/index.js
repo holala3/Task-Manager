@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
-
 const TodoContext = React.createContext();
 
 function TodoProvider(props){
@@ -12,7 +11,10 @@ function TodoProvider(props){
         error,
       } = useLocalStorage('TODOS_V1', []);
       const [searchValue, setSearchValue] = React.useState('');
-    
+      
+      const [openModal, setOpenModal] = React.useState(false);
+
+      
       const completedTodos = todos.filter(todo => !!todo.completed).length;
       const totalTodos = todos.length;
     
@@ -49,15 +51,17 @@ function TodoProvider(props){
         totalTodos,
         completedTodos,
         searchValue,
+        setSearchValue,
         searchedTodos,
         completeTodo,
         deleteTodo,
+        openModal,
+        setOpenModal,
         }}>
             {props.children}
         </TodoContext.Provider>
     )
 }
-
 
 
 export { TodoContext };
