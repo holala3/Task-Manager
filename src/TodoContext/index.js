@@ -4,6 +4,10 @@ const TodoContext = React.createContext();
 
 function TodoProvider(props){
     
+    
+
+    
+
     const {
         item: todos,
         saveItem: saveTodos,
@@ -36,6 +40,15 @@ function TodoProvider(props){
         newTodos[todoIndex].completed = true;
         saveTodos(newTodos);
       };
+
+      const addTodo = (text) => {
+        const newTodos = [...todos];
+        newTodos.push({
+          completed: false,
+          text,
+        })
+        saveTodos(newTodos);
+      };
     
       const deleteTodo = (text) => {
         const todoIndex = todos.findIndex(todo => todo.text === text);
@@ -43,6 +56,8 @@ function TodoProvider(props){
         newTodos.splice(todoIndex, 1);
         saveTodos(newTodos);
       };
+
+      
 
     return(    
         <TodoContext.Provider value={{
@@ -57,6 +72,7 @@ function TodoProvider(props){
         deleteTodo,
         openModal,
         setOpenModal,
+        addTodo,
         }}>
             {props.children}
         </TodoContext.Provider>
