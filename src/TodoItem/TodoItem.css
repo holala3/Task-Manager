@@ -10,6 +10,7 @@
        margin-left: 600px; 
        border-top: solid black 2px; 
        border-left: solid black 2px;
+       
 }
 
 .TodoItem-p {
@@ -45,4 +46,10 @@
     font-size: 2rem;
     text-align: center;
     font-weight: bold;
+  }
+
+  @media (max-width: 720px) {
+    .TodoItem{
+      background-color: red;
+    }
   }

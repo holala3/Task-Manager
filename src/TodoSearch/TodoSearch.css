@@ -19,3 +19,10 @@
     color: #a5a5a5;
     font-weight: 400;
 }
+
+@media (max-width: 720px){
+    .TodoSearch-input{
+        display: flex;
+        justify-content: start;
+    }
+}

@@ -6,6 +6,9 @@
 }
 html {
   font-size: 62.5%;
+  height: 100%;
+  width: 100%;
+
 }
 body{
   background-color: rgb(85, 153, 156);
