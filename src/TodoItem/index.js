@@ -6,7 +6,7 @@ import { TiCancel } from "react-icons/ti"
 
 function TodoItem (props){
     return(
-        
+        <div className="item-Container">
             <li className="TodoItem">
 
             <span 
@@ -27,7 +27,7 @@ function TodoItem (props){
                 <TiCancel/>
                 </span>
         </li>
-
+        </div>
         
         
     )

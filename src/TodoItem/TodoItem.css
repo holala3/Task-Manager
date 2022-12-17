@@ -6,11 +6,10 @@
         align-items: center;
         margin-top: 3.4rem;
         border-radius: 10px;
-       margin-right: 600px;
-       margin-left: 600px; 
        border-top: solid black 2px; 
        border-left: solid black 2px;
-       
+       height: 75px;
+       width: 100%;
 }
 
 .TodoItem-p {
@@ -48,8 +47,13 @@
     font-weight: bold;
   }
 
-  @media (max-width: 720px) {
+  @media (min-width: 890px) {
     .TodoItem{
-      background-color: red;
-    }
+      max-width: 1500px; 
+  }
+  .item-Container{
+    display: flex;
+    justify-content: center;
+  }
+
   }

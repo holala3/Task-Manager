@@ -11,3 +11,9 @@
     
     
 }
+@media(max-width: 720px ){
+    .TodoCounter{
+        display: flex;
+        
+    }
+}
